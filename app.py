@@ -13,7 +13,7 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/plot')
+@app.route('/plot/')
 def plot_maxmin():
 
     # obtain query parameters
@@ -26,7 +26,7 @@ def plot_maxmin():
     maxmin_year1 = request.args.get('maxmin_year1', type=str)
     maxmin_year2 = request.args.get('maxmin_year2', type=str)
     maxmin_year3 = request.args.get('maxmin_year3', type=str)
-    maxmin_num = request.args.get('maxmin_num', type=int)
+    maxmin_num = request.args.get('data_num', type=int)
     areas = [area1, area2, area3]
     maxmin_colors = [maxmin_color1, maxmin_color2, maxmin_color3]
     maxmin_years = [maxmin_year1, maxmin_year2, maxmin_year3]
@@ -34,16 +34,18 @@ def plot_maxmin():
     # scatter plot
     for i in range(maxmin_num):
         # read csv
-        df = pd.read_csv('/data/{0}/maxmin_{1}.csv'.format(areas[i],
-                         maxmin_years[i]), skiprows=6, header=None)
+        df = pd.read_csv('weather_research/static/data/{0}/maxmin_{1}.csv'.format(areas[i], maxmin_years[i]), skiprows=6, header=None)
         max_temp = df.iloc[:, 1]
         min_temp = df.iloc[:, 4]
 
         # scatter plot
         fig, ax = plt.subplots(1, 1)
-        ax.scatter(min_temp, max_temp, c=maxmin_colors[i])
+        ax.scatter(min_temp, max_temp, c=maxmin_colors[i], label='{0}:{1}'.format(str(maxmin_years[i]), areas[i]))
+        ax.set_xlabel('min temperature')
+        ax.set_ylabel('max temperature')
 
-        png_out = BytesIO()
+    plt.legend()
+    png_out = BytesIO()
 
     # save figure
     plt.savefig(png_out, format="png", bbox_inches="tight")

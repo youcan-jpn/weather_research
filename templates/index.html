@@ -13,7 +13,7 @@
         <div class='container'>
             <div>
                 <p>プロットするデータの種類を選んでください。
-                    <select id='data-type'>
+                    <select id='data_type'>
                         <option value='maxmin'>最高気温と最低気温</option>
                         <option value='rain'>降水量</option>
                     </select>
@@ -22,21 +22,43 @@
 
             <div>
                 <p>プロットするデータの個数を選んでください。</p>
-                <p>データの個数：<input type='number' min=1 max=3 value=1></p>
+                <p>データの個数：<input id='data_num' type='number' min=1 max=3 value=1></p>
+            </div>
+
+            <div>
+                <p>各データの観測地点を選んでください。</p>
+                <p class='data1'>データ1：
+                    <select id='area1'>
+                        <option value='Yokohama'>横浜</option>
+                        <option value='Tokyo'>Tokyo</option>
+                    </select>
+                </p>
+                <p class='data2'>データ2：
+                    <select id='area2'>
+                        <option value='Yokohama'>Yokohama</option>
+                        <option value='Tokyo'>Tokyo</option>
+                    </select>
+                </p>
+                <p class='data3'>データ3：
+                    <select id='area3'>
+                        <option value='Yokohama'>Yokohama</option>
+                        <option value='Tokyo'>Tokyo</option>
+                    </select>
+                </p>
             </div>
 
             <div>
                 <p>データの年度を指定してください。</p>
-                <p class="data1">データ1：<input type=number min=2010 max=2019 step=1 value=2010></p>
-                <p class="data2">データ2：<input type=number min=2010 max=2019 step=1 value=2011></p>
-                <p class="data3">データ3：<input type=number min=2010 max=2019 step=1 value=2012></p>
+                <p class="data1">データ1：<input type=number min=2010 max=2019 step=1 value=2010 id='maxmin_year1'></p>
+                <p class="data2">データ2：<input type=number min=2010 max=2019 step=1 value=2011 id='maxmin_year2'></p>
+                <p class="data3">データ3：<input type=number min=2010 max=2019 step=1 value=2012 id='maxmin_year3'></p>
             </div>
 
             <div class='maxmin-container'>
                 <div class='maxmin-color'>
                     <p>各データのプロットする色を選んでください。</p>
                     <p class='data1'>データ1
-                        <select id='maxmin-color1'>
+                        <select id='maxmin_color1'>
                             <option value='black'>black</option>
                             <option value='lightgray'>lightgray</option>
                             <option value='rosybrown'>rosybrown</option>
@@ -65,7 +87,7 @@
                         </select>
                     </p>
                     <p class='data2'>データ2：
-                        <select id='maxmin-color2'>
+                        <select id='maxmin_color2'>
                             <option value='black'>black</option>
                             <option value='lightgray'>lightgray</option>
                             <option value='rosybrown'>rosybrown</option>
@@ -94,7 +116,7 @@
                         </select>
                     </p>
                     <p class='data3'>データ3：
-                        <select id='maxmin-color3'>
+                        <select id='maxmin_color3'>
                             <option value='black'>black</option>
                             <option value='lightgray'>lightgray</option>
                             <option value='rosybrown'>rosybrown</option>
@@ -125,9 +147,14 @@
                 </div>
                 <div>
                     <p>右のボタンを押すとプロットできます。
-                    <input type='button' id='maxmin-plot' value='plot'></p>
+                    <input type='button' id='maxmin_plot' value='plot'></p>
                 </div>
+            </div>
+
+            <div class='image'>
+                <img id='plotimg'>
             </div>
         </div>
     </body>
+    <script type="text/javascript" src="../static/JS/plot_maxmin.js"></script>
 </html>
