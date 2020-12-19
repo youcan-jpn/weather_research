@@ -30,21 +30,30 @@ def plot_maxmin():
     areas = [area1, area2, area3]
     maxmin_colors = [maxmin_color1, maxmin_color2, maxmin_color3]
     maxmin_years = [maxmin_year1, maxmin_year2, maxmin_year3]
+    df1 = pd.DataFrame()
+    df2 = pd.DataFrame()
+    df3 = pd.DataFrame()
+    dfs = [df1, df2, df3]
+    max_temps = []
+    min_temps = []
 
     # scatter plot
     for i in range(maxmin_num):
         # read csv
-        df = pd.read_csv('weather_research/static/data/{0}/maxmin_{1}.csv'.format(areas[i], maxmin_years[i]), skiprows=6, header=None)
-        max_temp = df.iloc[:, 1]
-        min_temp = df.iloc[:, 4]
+        dfs[i] = pd.read_csv('weather_research/static/data/{0}/maxmin_{1}.csv'.format(areas[i], maxmin_years[i]), skiprows=6, header=None)
+        max_temps.append(dfs[i].iloc[:, 1])
+        min_temps.append(dfs[i].iloc[:, 4])
 
-        # scatter plot
-        fig, ax = plt.subplots(1, 1)
-        ax.scatter(min_temp, max_temp, c=maxmin_colors[i], label='{0}:{1}'.format(str(maxmin_years[i]), areas[i]))
-        ax.set_xlabel('min temperature')
-        ax.set_ylabel('max temperature')
+    fig, ax = plt.subplots(1, 1)
 
+    for i in range(maxmin_num):
+        # plot
+        ax.scatter(min_temps[i], max_temps[i], c=maxmin_colors[i], label='{0}:{1}'.format(str(maxmin_years[i]), areas[i]))
+
+    ax.set_xlabel('min temperature')
+    ax.set_ylabel('max temperature')
     plt.legend()
+
     png_out = BytesIO()
 
     # save figure
