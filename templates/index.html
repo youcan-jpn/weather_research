@@ -60,7 +60,7 @@
                 <p class="data3">データ3：<input type=number min=2010 max=2019 step=1 value=2012 id='maxmin_year3'></p>
             </div>
 
-            <div class='maxmin-container'>
+            <div id='maxmin'>
                 <div class='maxmin-color'>
                     <p>各データのプロットする色を選んでください。</p>
                     <p class='data1'>データ1：
@@ -157,10 +157,16 @@
                 </div>
             </div>
 
+            <div id='rain'>
+                <p>ここは降水量のパートです。</p>
+            </div>
+
             <div class='image'>
                 <img id='plotimg'>
             </div>
         </div>
     </body>
     <script type="text/javascript" src="../static/JS/plot_maxmin.js"></script>
+    <script type="text/javascript" src="../static/JS/viewcontrol_data_type.js"></script>
+    <script type="text/javascript" src="../static/JS/viewcontrol_data_num.js"></script>
 </html>
