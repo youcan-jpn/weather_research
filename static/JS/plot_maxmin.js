@@ -17,7 +17,7 @@ function plotmaxmin() {
     var query = jQuery.param(param);
 
     // Query with a new parameter 
-    $.get("/plot" + "?" + query, function(data) {
+    $.get("/plot/maxmin" + "?" + query, function(data) {
         document.getElementById("plotimg").src = data;
     });
 };

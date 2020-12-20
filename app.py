@@ -13,7 +13,7 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/plot/')
+@app.route('/plot/maxmin')
 def plot_maxmin():
 
     # obtain query parameters
