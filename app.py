@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import urllib
 from io import BytesIO
+from datetime import datetime, timedelta
 
 app = Flask(__name__)
 
@@ -37,17 +38,16 @@ def plot_maxmin():
     max_temps = []
     min_temps = []
 
-    # scatter plot
+    # read csv
     for i in range(maxmin_num):
-        # read csv
         dfs[i] = pd.read_csv('weather_research/static/data/{0}/maxmin_{1}.csv'.format(areas[i], maxmin_years[i]), skiprows=6, header=None)
         max_temps.append(dfs[i].iloc[:, 1])
         min_temps.append(dfs[i].iloc[:, 4])
 
     fig, ax = plt.subplots(1, 1)
 
+    # plot
     for i in range(maxmin_num):
-        # plot
         ax.scatter(min_temps[i], max_temps[i], c=maxmin_colors[i], label='{0}:{1}'.format(str(maxmin_years[i]), areas[i]))
 
     ax.set_xlabel('min temperature')
@@ -64,5 +64,58 @@ def plot_maxmin():
     return "data:image/png:base64," + img_data
 
 
+@app.route('/plot/rain')
+def plot_rain():
+
+    # obtain query parameters
+    area1 = request.args.get('area1', type=str)
+    area2 = request.args.get('area2', type=str)
+    area3 = request.args.get('area3', type=str)
+    areas = [area1, area2, area3]
+    start = datetime.strptime(request.args.get("start", default="2010-1-1", type=str), "%Y-%m-%d")
+    end = datetime.strptime(request.args.get("end", default="2019-12-31", type=str), "%Y-%m-%d")
+    rain_color1 = request.args.get('rain_color1', type=str)
+    rain_color2 = request.args.get('rain_color2', type=str)
+    rain_color3 = request.args.get('rain_color3', type=str)
+    rain_colors = [rain_color1, rain_color2, rain_color3]
+    rain_alpha = request.args.get('rain_alpha', type=float)
+    rain_num = request.args.get('data_num', type=int)
+
+    df1 = pd.DataFrame()
+    df2 = pd.DataFrame()
+    df3 = pd.DataFrame()
+    dfs = [df1, df2, df3]
+
+    # read csv
+    for i in range(rain_num):
+        dfs[i] = pd.read_csv('weather_research/static/data/{0}/rain.csv'.format(areas[i]), index_col=0, skiprows=5)
+
+    if rain_num == 2:
+        df = pd.merge(dfs[0], dfs[1], on=index)
+
+    if rain_num == 3:
+        df_tmp = pd.merge(dfs[0], dfs[1], on=index)
+        df = pd.merge(df_tmp, dfs[2], on=index)
+
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
+
+# import pandas as pd
+# import matplotlib.pyplot as plt
+# from datetime import datetime
+
+# df1 = pd.read_csv('weather_research/static/data/Naha/rain.csv', skiprows=5, parse_dates=True, index_col=0)
+# df2 = pd.read_csv('weather_research/static/data/Sapporo/rain.csv', skiprows=5, parse_dates=True, index_col=0)
+
+
+# start = datetime.strptime("2019/12/1", '%Y/%m/%d')
+# end = datetime.strptime("2019/12/31", '%Y/%m/%d')
+
+# fig, ax = plt.subplots(1, 1)
+# ax.plot(df1["rain"])
+# ax.plot(df2["rain"])
+# ax.set_xlim([start, end])
+# plt.xticks(rotation=30)
+# plt.show()
