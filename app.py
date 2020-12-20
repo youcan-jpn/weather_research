@@ -85,6 +85,8 @@ def plot_rain():
     df3 = pd.DataFrame()
     dfs = [df1, df2, df3]
 
+    fig, ax = plt.subplots(1, 1)
+
     # plot
     for i in range(rain_num):
         dfs[i] = pd.read_csv('weather_research/static/data/{0}/rain.csv'.format(areas[i]), index_col=0, skiprows=5, parse_dates=True)
