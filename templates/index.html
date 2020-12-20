@@ -159,6 +159,109 @@
 
             <div id='rain'>
                 <p>ここは降水量のパートです。</p>
+                <div>
+                    <p>描画する期間を選択してください。</p>
+                    <p>start:
+                        <input type=date id=start value="2019-01-01" min="2010-01-01" max ="2019-12-31">
+                    </p>
+                    <p>end:
+                        <input type=date id=end value="2019-12-31" min="2010-01-01" max ="2019-12-31">
+                    </p>
+                </div>
+                <div class='rain-color'>
+                    <p>各データのプロットする色を選んでください。</p>
+                    <p class='data1'>データ1：
+                        <select id='rain_color1'>
+                            <option value='black'>black</option>
+                            <option value='lightgray'>lightgray</option>
+                            <option value='rosybrown'>rosybrown</option>
+                            <option value='lightcoral'>lightcoral</option>
+                            <option value='firebrick'>firebrick</option>
+                            <option value='maroon'>maroon</option>
+                            <option value='red' selected>red</option>
+                            <option value='salmon'>salmon</option>
+                            <option value='orangered'>orangered</option>
+                            <option value='chocolate'>chocolate</option>
+                            <oprion value='darkorange'>darkorange</oprion>
+                            <option value='goldenrod'>goldenrod</option>
+                            <option value='olive'>olive</option>
+                            <option value='chartreuse'>chartreuse</option>
+                            <option value='lightgreen'>lightgreen</option>
+                            <option value='green'>green</option>
+                            <option value='springgreen'>springgreen</option>
+                            <option value='turquoise'>turquoise</option>
+                            <option value='teal'>teal</option>
+                            <option value='skyblue'>skyblue</option>
+                            <option value='dodgerblue'>dodgerblue</option>
+                            <option value="navy">navy</option>
+                            <option value='blue'>blue</option>
+                            <option value='blueviolet'>blueviolet</option>
+                            <option value='purple'>purple</option>
+                        </select>
+                    </p>
+                    <p class='data2'>データ2：
+                        <select id='rain_color2'>
+                            <option value='black'>black</option>
+                            <option value='lightgray'>lightgray</option>
+                            <option value='rosybrown'>rosybrown</option>
+                            <option value='lightcoral'>lightcoral</option>
+                            <option value='firebrick'>firebrick</option>
+                            <option value='maroon'>maroon</option>
+                            <option value='red'>red</option>
+                            <option value='salmon'>salmon</option>
+                            <option value='orangered'>orangered</option>
+                            <option value='chocolate'>chocolate</option>
+                            <oprion value='darkorange'>darkorange</oprion>
+                            <option value='goldenrod'>goldenrod</option>
+                            <option value='olive'>olive</option>
+                            <option value='chartreuse'>chartreuse</option>
+                            <option value='lightgreen'>lightgreen</option>
+                            <option value='green' selected>green</option>
+                            <option value='springgreen'>springgreen</option>
+                            <option value='turquoise'>turquoise</option>
+                            <option value='teal'>teal</option>
+                            <option value='skyblue'>skyblue</option>
+                            <option value='dodgerblue'>dodgerblue</option>
+                            <option value="navy">navy</option>
+                            <option value='blue'>blue</option>
+                            <option value='blueviolet'>blueviolet</option>
+                            <option value='purple'>purple</option>
+                        </select>
+                    </p>
+                    <p class='data3'>データ3：
+                        <select id='rain_color3'>
+                            <option value='black'>black</option>
+                            <option value='lightgray'>lightgray</option>
+                            <option value='rosybrown'>rosybrown</option>
+                            <option value='lightcoral'>lightcoral</option>
+                            <option value='firebrick'>firebrick</option>
+                            <option value='maroon'>maroon</option>
+                            <option value='red'>red</option>
+                            <option value='salmon'>salmon</option>
+                            <option value='orangered'>orangered</option>
+                            <option value='chocolate'>chocolate</option>
+                            <oprion value='darkorange'>darkorange</oprion>
+                            <option value='goldenrod'>goldenrod</option>
+                            <option value='olive'>olive</option>
+                            <option value='chartreuse'>chartreuse</option>
+                            <option value='lightgreen'>lightgreen</option>
+                            <option value='green'>green</option>
+                            <option value='springgreen'>springgreen</option>
+                            <option value='turquoise'>turquoise</option>
+                            <option value='teal'>teal</option>
+                            <option value='skyblue'>skyblue</option>
+                            <option value='dodgerblue'>dodgerblue</option>
+                            <option value="navy">navy</option>
+                            <option value='blue' selected>blue</option>
+                            <option value='blueviolet'>blueviolet</option>
+                            <option value='purple'>purple</option>
+                        </select>
+                    </p>
+                </div>
+                <div>
+                    <p>右のボタンを押すとプロットできます。
+                    <input type='button' id='rain_plot' value='plot'></p>
+                </div>
             </div>
 
             <div class='image'>
@@ -167,6 +270,7 @@
         </div>
     </body>
     <script type="text/javascript" src="../static/JS/plot_maxmin.js"></script>
+    <script type="text/javascript" src="../static/JS/plot_rain.js"></script>
     <script type="text/javascript" src="../static/JS/viewcontrol_data_type.js"></script>
     <script type="text/javascript" src="../static/JS/viewcontrol_data_num.js"></script>
 </html>

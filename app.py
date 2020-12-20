@@ -72,7 +72,7 @@ def plot_rain():
     area2 = request.args.get('area2', type=str)
     area3 = request.args.get('area3', type=str)
     areas = [area1, area2, area3]
-    start = datetime.strptime(request.args.get("start", default="2010-1-1", type=str), "%Y-%m-%d")
+    start = datetime.strptime(request.args.get("start", default="2010-01-01", type=str), "%Y-%m-%d")
     end = datetime.strptime(request.args.get("end", default="2019-12-31", type=str), "%Y-%m-%d")
     rain_color1 = request.args.get('rain_color1', type=str)
     rain_color2 = request.args.get('rain_color2', type=str)
@@ -86,14 +86,19 @@ def plot_rain():
     dfs = [df1, df2, df3]
 
     fig, ax = plt.subplots(1, 1)
+    if start > end:
+        start, end = end, start
+
+    if (start + timedelta(days=7)) > end:
+        end = start + timedelta(days=7)
 
     # plot
     for i in range(rain_num):
         dfs[i] = pd.read_csv('weather_research/static/data/{0}/rain.csv'.format(areas[i]), index_col=0, skiprows=5, parse_dates=True)
-        ax.plot(dfs[i], c=rain_colors[i], label="{}".format(areas[i]))
+        ax.plot(dfs[i].loc[:, "rain"], c=rain_colors[i], label="{}".format(areas[i]))
 
     ax.set_xlim([start, end])
-    ax.xticks(rotation=30)
+    plt.xticks(rotation=30)
     ax.set_ylabel('preciptation')
 
     plt.legend()
@@ -108,26 +113,5 @@ def plot_rain():
     return "data:image/png:base64," + img_data
 
 
-
-
-
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
-
-# import pandas as pd
-# import matplotlib.pyplot as plt
-# from datetime import datetime
-
-# df1 = pd.read_csv('weather_research/static/data/Naha/rain.csv', skiprows=5, parse_dates=True, index_col=0)
-# df2 = pd.read_csv('weather_research/static/data/Sapporo/rain.csv', skiprows=5, parse_dates=True, index_col=0)
-
-
-# start = datetime.strptime("2019/12/1", '%Y/%m/%d')
-# end = datetime.strptime("2019/12/31", '%Y/%m/%d')
-
-# fig, ax = plt.subplots(1, 1)
-# ax.plot(df1["rain"])
-# ax.plot(df2["rain"])
-# ax.set_xlim([start, end])
-# plt.xticks(rotation=30)
-# plt.show()
