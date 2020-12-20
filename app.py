@@ -78,7 +78,6 @@ def plot_rain():
     rain_color2 = request.args.get('rain_color2', type=str)
     rain_color3 = request.args.get('rain_color3', type=str)
     rain_colors = [rain_color1, rain_color2, rain_color3]
-    rain_alpha = request.args.get('rain_alpha', type=float)
     rain_num = request.args.get('data_num', type=int)
 
     df1 = pd.DataFrame()
@@ -86,16 +85,27 @@ def plot_rain():
     df3 = pd.DataFrame()
     dfs = [df1, df2, df3]
 
-    # read csv
+    # plot
     for i in range(rain_num):
-        dfs[i] = pd.read_csv('weather_research/static/data/{0}/rain.csv'.format(areas[i]), index_col=0, skiprows=5)
+        dfs[i] = pd.read_csv('weather_research/static/data/{0}/rain.csv'.format(areas[i]), index_col=0, skiprows=5, parse_dates=True)
+        ax.plot(dfs[i], c=rain_colors[i], label="{}".format(areas[i]))
 
-    if rain_num == 2:
-        df = pd.merge(dfs[0], dfs[1], on=index)
+    ax.set_xlim([start, end])
+    ax.xticks(rotation=30)
+    ax.set_ylabel('preciptation')
 
-    if rain_num == 3:
-        df_tmp = pd.merge(dfs[0], dfs[1], on=index)
-        df = pd.merge(df_tmp, dfs[2], on=index)
+    plt.legend()
+
+    png_out = BytesIO()
+
+    # save figure
+    plt.savefig(png_out, format="png", bbox_inches="tight")
+    plt.close()
+    img_data = urllib.parse.quote(png_out.getvalue())
+
+    return "data:image/png:base64," + img_data
+
+
 
 
 
