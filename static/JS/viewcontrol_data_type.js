@@ -4,10 +4,10 @@ function changeViewByDataType() {
     for(let item of graphs) {
         if(item == target_value) {
             var display_item = document.getElementById(item);
-            display_item.classList.remove('hidden');
+            display_item.classList.remove('NOW');
         } else {
             var hidden_item = document.getElementById(item);
-            hidden_item.classList.add('hidden');
+            hidden_item.classList.add('NOW');
         };
     };
 };
