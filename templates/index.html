@@ -11,8 +11,8 @@
 
     <body>
         <div class='container'>
-            <h1>Weather Plot</h1>
-            <div id="config">
+            <div id="settings">
+                <h1>Weather Plot</h1>
                 <div>
                     <p>プロットするデータの種類を選んでください。
                         <select id='data_type'>
@@ -31,7 +31,7 @@
                     <p>各データの観測地点を選んでください。</p>
                     <p class='data1'>データ1：
                         <select id='area1'>
-                            <option value='Tokyo'>東京</option>
+                            <option value='Tokyo' selected>東京</option>
                             <option value='Yokohama'>横浜</option>
                             <option value='Sapporo'>札幌</option>
                             <option value='Naha'>那覇</option>
@@ -40,7 +40,7 @@
                     <p class='data2'>データ2：
                         <select id='area2'>
                             <option value='Tokyo'>東京</option>
-                            <option value='Yokohama'>横浜</option>
+                            <option value='Yokohama' selected>横浜</option>
                             <option value='Sapporo'>札幌</option>
                             <option value='Naha'>那覇</option>
                         </select>
@@ -49,7 +49,7 @@
                         <select id='area3'>
                             <option value='Tokyo'>東京</option>
                             <option value='Yokohama'>横浜</option>
-                            <option value='Sapporo'>札幌</option>
+                            <option value='Sapporo' selected>札幌</option>
                             <option value='Naha'>那覇</option>
                         </select>
                     </p>
@@ -160,9 +160,8 @@
                 </div>
 
                 <div id='rain'>
-                    <p>ここは降水量のパートです。</p>
                     <div>
-                        <p>描画する期間を選択してください。</p>
+                        <p>描画する期間を選択してください。(最大：2010/01/01-2019/12/31)</p>
                         <p>start:
                             <input type=date id=start value="2019-01-01" min="2010-01-01" max ="2019-12-31">
                         </p>

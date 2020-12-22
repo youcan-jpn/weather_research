@@ -49,8 +49,8 @@ def plot_maxmin():
     for i in range(maxmin_num):
         ax.scatter(min_temps[i], max_temps[i], c=maxmin_colors[i], label='{0}:{1}'.format(str(maxmin_years[i]), areas[i]))
 
-    ax.set_xlabel('min temperature')
-    ax.set_ylabel('max temperature')
+    ax.set_xlabel('min temperature /°C')
+    ax.set_ylabel('max temperature /°C')
     plt.legend()
 
     png_out = BytesIO()
@@ -98,7 +98,7 @@ def plot_rain():
 
     ax.set_xlim([start, end])
     plt.xticks(rotation=30)
-    ax.set_ylabel('preciptation')
+    ax.set_ylabel('preciptation /mm')
 
     plt.legend()
 
