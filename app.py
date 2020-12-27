@@ -112,5 +112,9 @@ def plot_rain():
     return "data:image/png:base64," + img_data
 
 
+@app.route('plot/bar')
+def plot_bar():
+    df = pd.read_csv('weather_research/static/data/Tokyo/rain.csv', skiprows=5)
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
