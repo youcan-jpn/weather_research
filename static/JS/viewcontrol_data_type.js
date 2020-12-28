@@ -1,6 +1,6 @@
 function changeViewByDataType() {
     var target_value = document.getElementById('data_type').value;
-    let graphs = ['maxmin', 'rain'];
+    let graphs = ['maxmin', 'rain', 'bar'];
     for(let item of graphs) {
         if(item == target_value) {
             var display_item = document.getElementById(item);

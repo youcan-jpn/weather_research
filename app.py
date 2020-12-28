@@ -116,8 +116,8 @@ def plot_rain():
 def plot_bar():
 
     # obtain query parameters
-    bar_area = request.args.get('bar_area', type=str)
-    bar_start = datetime.datetime.strptime(request.args.get("bar_start", default="2010-01-01", type=str), "%Y-%m-%d")
+    bar_area = request.args.get('area_bar', type=str)
+    bar_start = datetime.strptime(request.args.get("start_bar", default="2010-01-01", type=str), "%Y-%m-%d")
     bar_color = request.args.get('bar_color', type=str)
 
     days_index = (bar_start - datetime.strptime("2010-01-01", "%Y-%m-%d")).days
@@ -130,7 +130,7 @@ def plot_bar():
 
     df_lim = df.iloc[days_index:days_index+28, :]
 
-    fig = plt.figure(figsize=(16, 8))
+    fig = plt.figure(figsize=(6, 3))
     ax = fig.add_subplot(1, 1, 1)
 
     ax.bar(x=df["date"], height=df["rain"], width=0.96, color="skyblue", align="edge")
