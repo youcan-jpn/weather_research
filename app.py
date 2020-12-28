@@ -98,7 +98,7 @@ def plot_rain():
 
     ax.set_xlim([start, end])
     plt.xticks(rotation=30)
-    ax.set_ylabel('preciptation /mm')
+    ax.set_ylabel('precipitation /mm')
 
     plt.legend()
 
@@ -112,9 +112,45 @@ def plot_rain():
     return "data:image/png:base64," + img_data
 
 
-@app.route('plot/bar')
+@app.route('/plot/bar')
 def plot_bar():
-    df = pd.read_csv('weather_research/static/data/Tokyo/rain.csv', skiprows=5)
+
+    # obtain query parameters
+    bar_area = request.args.get('bar_area', type=str)
+    bar_start = datetime.datetime.strptime(request.args.get("bar_start", default="2010-01-01", type=str), "%Y-%m-%d")
+    bar_color = request.args.get('bar_color', type=str)
+
+    days_index = (bar_start - datetime.strptime("2010-01-01", "%Y-%m-%d")).days
+
+    df = pd.read_csv('weather_research/static/data/{}/rain.csv'.format(bar_area), skiprows=5)
+    df["date"] = pd.to_datetime(df["date"])
+    start_date = df.iloc[days_index]["date"]
+    end_date = df.iloc[days_index]["date"] + timedelta(days=+28)
+    title_label = "".format(bar_area) + start_date.strftime("%Y/%m/%d") + " - " + end_date.strftime("%Y/%m/%d")
+
+    df_lim = df.iloc[days_index:days_index+28, :]
+
+    fig = plt.figure(figsize=(16, 8))
+    ax = fig.add_subplot(1, 1, 1)
+
+    ax.bar(x=df["date"], height=df["rain"], width=0.96, color="skyblue", align="edge")
+    ax.set_xlim(start_date, end_date)
+    ax.set_ylim(0, df_lim.max()[1]+2)
+    ax.set_ylabel("precipitation /mm")
+    ax.set_title(title_label)
+    ax.set_facecolor("white")
+    ax.grid(axis="y", which="both", linewidth=0.5, linestyle="dashed", alpha=0.5)
+    plt.xticks(rotation=60)
+
+    png_out = BytesIO()
+
+    # save figure
+    plt.savefig(png_out, format="png", bbox_inches="tight")
+    plt.close()
+    img_data = urllib.parse.quote(png_out.getvalue())
+
+    return "data:image/png:base64," + img_data
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
