@@ -125,10 +125,10 @@ def plot_bar():
     df = pd.read_csv('weather_research/static/data/{}/rain.csv'.format(bar_area), skiprows=5)
     df["date"] = pd.to_datetime(df["date"])
     start_date = df.iloc[days_index]["date"]
-    end_date = df.iloc[days_index]["date"] + timedelta(days=+28)
+    end_date = df.iloc[days_index]["date"] + timedelta(days=+14)
     title_label = "".format(bar_area) + start_date.strftime("%Y/%m/%d") + " - " + end_date.strftime("%Y/%m/%d")
 
-    df_lim = df.iloc[days_index:days_index+28, :]
+    df_lim = df.iloc[days_index:days_index+14, :]
 
     fig = plt.figure(figsize=(6, 3))
     ax = fig.add_subplot(1, 1, 1)
@@ -140,7 +140,7 @@ def plot_bar():
     ax.set_title(title_label)
     ax.set_facecolor("white")
     ax.grid(axis="y", which="both", linewidth=0.5, linestyle="dashed", alpha=0.5)
-    plt.xticks(rotation=60)
+    plt.xticks(rotation=45)
 
     png_out = BytesIO()
 
