@@ -17,58 +17,59 @@
                     <p>プロットするデータの種類を選んでください。
                         <select id='data_type'>
                             <option value='maxmin'>最高気温/最低気温</option>
-                            <option value='rain'>降水量</option>
-                        </select>
-                    </p>
-                </div>
-
-                <div>
-                    <p>プロットするデータの個数を選んでください。</p>
-                    <p>データの個数：<input id='data_num' type='number' min=1 max=3 value=1></p>
-                </div>
-
-                <div>
-                    <p>各データの観測地点を選んでください。</p>
-                    <p class='data1'>データ1：
-                        <select id='area1'>
-                            <option value='Tokyo' selected>東京</option>
-                            <option value='Yokohama'>横浜</option>
-                            <option value='Sapporo'>札幌</option>
-                            <option value='Matsumoto'>松本</option>
-                            <option value='Naha'>那覇</option>
-                        </select>
-                    </p>
-                    <p class='data2'>データ2：
-                        <select id='area2'>
-                            <option value='Tokyo'>東京</option>
-                            <option value='Yokohama' selected>横浜</option>
-                            <option value='Sapporo'>札幌</option>
-                            <option value='Matsumoto'>松本</option>
-                            <option value='Naha'>那覇</option>
-                        </select>
-                    </p>
-                    <p class='data3'>データ3：
-                        <select id='area3'>
-                            <option value='Tokyo'>東京</option>
-                            <option value='Yokohama'>横浜</option>
-                            <option value='Sapporo' selected>札幌</option>
-                            <option value='Matsumoto'>松本</option>
-                            <option value='Naha'>那覇</option>
+                            <option value='rain'>降水量比較</option>
+                            <option value='bar'>降水量</option>
                         </select>
                     </p>
                 </div>
 
                 <div id='maxmin'>
                     <div>
+                        <p>プロットするデータの個数を選んでください。</p>
+                        <p>データの個数：<input id='data_num_maxmin' type='number' min=1 max=3 value=1></p>
+                    </div>
+    
+                    <div>
+                        <p>各データの観測地点を選んでください。</p>
+                        <p class='data1_maxmin'>データ1：
+                            <select id='area1_maxmin'>
+                                <option value='Tokyo' selected>東京</option>
+                                <option value='Yokohama'>横浜</option>
+                                <option value='Sapporo'>札幌</option>
+                                <option value='Matsumoto'>松本</option>
+                                <option value='Naha'>那覇</option>
+                            </select>
+                        </p>
+                        <p class='data2_maxmin'>データ2：
+                            <select id='area2_maxmin'>
+                                <option value='Tokyo'>東京</option>
+                                <option value='Yokohama' selected>横浜</option>
+                                <option value='Sapporo'>札幌</option>
+                                <option value='Matsumoto'>松本</option>
+                                <option value='Naha'>那覇</option>
+                            </select>
+                        </p>
+                        <p class='data3_maxmin'>データ3：
+                            <select id='area3_maxmin'>
+                                <option value='Tokyo'>東京</option>
+                                <option value='Yokohama'>横浜</option>
+                                <option value='Sapporo' selected>札幌</option>
+                                <option value='Matsumoto'>松本</option>
+                                <option value='Naha'>那覇</option>
+                            </select>
+                        </p>
+                    </div>
+
+                    <div>
                         <p>データの年度を指定してください。</p>
-                        <p class="data1">データ1：<input type=number min=2010 max=2019 step=1 value=2010 id='maxmin_year1'></p>
-                        <p class="data2">データ2：<input type=number min=2010 max=2019 step=1 value=2011 id='maxmin_year2'></p>
-                        <p class="data3">データ3：<input type=number min=2010 max=2019 step=1 value=2012 id='maxmin_year3'></p>
+                        <p class="data1_maxmin">データ1：<input type=number min=2010 max=2019 step=1 value=2010 id='maxmin_year1'></p>
+                        <p class="data2_maxmin">データ2：<input type=number min=2010 max=2019 step=1 value=2011 id='maxmin_year2'></p>
+                        <p class="data3_maxmin">データ3：<input type=number min=2010 max=2019 step=1 value=2012 id='maxmin_year3'></p>
                     </div>
 
                     <div class='maxmin-color'>
                         <p>各データのプロットする色を選んでください。</p>
-                        <p class='data1'>データ1：
+                        <p class='data1_maxmin'>データ1：
                             <select id='maxmin_color1'>
                                 <option value='black'>black</option>
                                 <option value='lightgray'>lightgray</option>
@@ -97,7 +98,7 @@
                                 <option value='purple'>purple</option>
                             </select>
                         </p>
-                        <p class='data2'>データ2：
+                        <p class='data2_maxmin'>データ2：
                             <select id='maxmin_color2'>
                                 <option value='black'>black</option>
                                 <option value='lightgray'>lightgray</option>
@@ -126,7 +127,7 @@
                                 <option value='purple'>purple</option>
                             </select>
                         </p>
-                        <p class='data3'>データ3：
+                        <p class='data3_maxmin'>データ3：
                             <select id='maxmin_color3'>
                                 <option value='black'>black</option>
                                 <option value='lightgray'>lightgray</option>
@@ -164,6 +165,42 @@
 
                 <div id='rain'>
                     <div>
+                        <p>プロットするデータの個数を選んでください。</p>
+                        <p>データの個数：<input id='data_num_rain' type='number' min=1 max=3 value=1></p>
+                    </div>
+    
+                    <div>
+                        <p>各データの観測地点を選んでください。</p>
+                        <p class='data1_rain'>データ1：
+                            <select id='area1_rain'>
+                                <option value='Tokyo' selected>東京</option>
+                                <option value='Yokohama'>横浜</option>
+                                <option value='Sapporo'>札幌</option>
+                                <option value='Matsumoto'>松本</option>
+                                <option value='Naha'>那覇</option>
+                            </select>
+                        </p>
+                        <p class='data2_rain'>データ2：
+                            <select id='area2_rain'>
+                                <option value='Tokyo'>東京</option>
+                                <option value='Yokohama' selected>横浜</option>
+                                <option value='Sapporo'>札幌</option>
+                                <option value='Matsumoto'>松本</option>
+                                <option value='Naha'>那覇</option>
+                            </select>
+                        </p>
+                        <p class='data3_rain'>データ3：
+                            <select id='area3_rain'>
+                                <option value='Tokyo'>東京</option>
+                                <option value='Yokohama'>横浜</option>
+                                <option value='Sapporo' selected>札幌</option>
+                                <option value='Matsumoto'>松本</option>
+                                <option value='Naha'>那覇</option>
+                            </select>
+                        </p>
+                    </div>
+
+                    <div>
                         <p>描画する期間を選択してください。(最大：2010/01/01-2019/12/31)</p>
                         <p>start:
                             <input type=date id=start value="2019-01-01" min="2010-01-01" max ="2019-12-31">
@@ -174,7 +211,7 @@
                     </div>
                     <div class='rain-color'>
                         <p>各データのプロットする色を選んでください。</p>
-                        <p class='data1'>データ1：
+                        <p class='data1_rain'>データ1：
                             <select id='rain_color1'>
                                 <option value='black'>black</option>
                                 <option value='lightgray'>lightgray</option>
@@ -203,7 +240,7 @@
                                 <option value='purple'>purple</option>
                             </select>
                         </p>
-                        <p class='data2'>データ2：
+                        <p class='data2_rain'>データ2：
                             <select id='rain_color2'>
                                 <option value='black'>black</option>
                                 <option value='lightgray'>lightgray</option>
@@ -232,7 +269,7 @@
                                 <option value='purple'>purple</option>
                             </select>
                         </p>
-                        <p class='data3'>データ3：
+                        <p class='data3_rain'>データ3：
                             <select id='rain_color3'>
                                 <option value='black'>black</option>
                                 <option value='lightgray'>lightgray</option>
@@ -267,6 +304,30 @@
                         <input type='button' id='rain_plot' value='plot'></p>
                     </div>
                 </div>
+
+                <div id='bar'>
+                    <div>
+                        <p class='data_bar'>データの観測地点を選んでください：
+                            <select id='area_bar'>
+                                <option value='Tokyo' selected>東京</option>
+                                <option value='Yokohama'>横浜</option>
+                                <option value='Sapporo'>札幌</option>
+                                <option value='Matsumoto'>松本</option>
+                                <option value='Naha'>那覇</option>
+                            </select>
+                        </p>
+                    </div>
+                    <div>
+                        <p>描画を始める日付を選択してください。
+                            <input type=date id=start_bar value="2019-01-01" min="2010-01-01" max ="2019-12-18">
+                        </p>
+                        <p>※14日分のデータが描画されます。</p>
+                    </div>
+                    <div>
+                        <p>右のボタンを押すとプロットできます。
+                        <input type='button' id='bar_plot' value='plot'></p>
+                    </div>
+                </div>
             </div>
             <div id='image'>
                 <img id='plotimg'>
@@ -275,6 +336,8 @@
     </body>
     <script type="text/javascript" src="../static/JS/plot_maxmin.js"></script>
     <script type="text/javascript" src="../static/JS/plot_rain.js"></script>
+    <script type="text/javascript" src="../static/JS/plot_bar.js"></script>
     <script type="text/javascript" src="../static/JS/viewcontrol_data_type.js"></script>
-    <script type="text/javascript" src="../static/JS/viewcontrol_data_num.js"></script>
+    <script type="text/javascript" src="../static/JS/viewcontrol_data_num_maxmin.js"></script>
+    <script type="text/javascript" src="../static/JS/viewcontrol_data_num_rain.js"></script>
 </html>

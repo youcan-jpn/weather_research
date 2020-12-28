@@ -17,16 +17,16 @@ def index():
 def plot_maxmin():
 
     # obtain query parameters
-    area1 = request.args.get('area1', type=str)
-    area2 = request.args.get('area2', type=str)
-    area3 = request.args.get('area3', type=str)
+    area1 = request.args.get('area1_maxmin', type=str)
+    area2 = request.args.get('area2_maxmin', type=str)
+    area3 = request.args.get('area3_maxmin', type=str)
     maxmin_color1 = request.args.get('maxmin_color1', type=str)
     maxmin_color2 = request.args.get('maxmin_color2', type=str)
     maxmin_color3 = request.args.get('maxmin_color3', type=str)
     maxmin_year1 = request.args.get('maxmin_year1', type=str)
     maxmin_year2 = request.args.get('maxmin_year2', type=str)
     maxmin_year3 = request.args.get('maxmin_year3', type=str)
-    maxmin_num = request.args.get('data_num', type=int)
+    maxmin_num = request.args.get('data_num_maxmin', type=int)
     areas = [area1, area2, area3]
     maxmin_colors = [maxmin_color1, maxmin_color2, maxmin_color3]
     maxmin_years = [maxmin_year1, maxmin_year2, maxmin_year3]
@@ -67,9 +67,9 @@ def plot_maxmin():
 def plot_rain():
 
     # obtain query parameters
-    area1 = request.args.get('area1', type=str)
-    area2 = request.args.get('area2', type=str)
-    area3 = request.args.get('area3', type=str)
+    area1 = request.args.get('area1_rain', type=str)
+    area2 = request.args.get('area2_rain', type=str)
+    area3 = request.args.get('area3_rain', type=str)
     areas = [area1, area2, area3]
     start = datetime.strptime(request.args.get("start", default="2010-01-01", type=str), "%Y-%m-%d")
     end = datetime.strptime(request.args.get("end", default="2019-12-31", type=str), "%Y-%m-%d")
@@ -77,7 +77,7 @@ def plot_rain():
     rain_color2 = request.args.get('rain_color2', type=str)
     rain_color3 = request.args.get('rain_color3', type=str)
     rain_colors = [rain_color1, rain_color2, rain_color3]
-    rain_num = request.args.get('data_num', type=int)
+    rain_num = request.args.get('data_num_rain', type=int)
 
     df1 = pd.DataFrame()
     df2 = pd.DataFrame()
@@ -98,9 +98,49 @@ def plot_rain():
 
     ax.set_xlim([start, end])
     plt.xticks(rotation=30)
-    ax.set_ylabel('preciptation /mm')
+    ax.set_ylabel('precipitation /mm')
 
     plt.legend()
+
+    png_out = BytesIO()
+
+    # save figure
+    plt.savefig(png_out, format="png", bbox_inches="tight")
+    plt.close()
+    img_data = urllib.parse.quote(png_out.getvalue())
+
+    return "data:image/png:base64," + img_data
+
+
+@app.route('/plot/bar')
+def plot_bar():
+
+    # obtain query parameters
+    bar_area = request.args.get('area_bar', type=str)
+    bar_start = datetime.strptime(request.args.get("start_bar", default="2010-01-01", type=str), "%Y-%m-%d")
+    bar_color = request.args.get('bar_color', type=str)
+
+    days_index = (bar_start - datetime.strptime("2010-01-01", "%Y-%m-%d")).days
+
+    df = pd.read_csv('weather_research/static/data/{}/rain.csv'.format(bar_area), skiprows=5)
+    df["date"] = pd.to_datetime(df["date"])
+    start_date = df.iloc[days_index]["date"]
+    end_date = df.iloc[days_index]["date"] + timedelta(days=+14)
+    title_label = "".format(bar_area) + start_date.strftime("%Y/%m/%d") + " - " + end_date.strftime("%Y/%m/%d")
+
+    df_lim = df.iloc[days_index:days_index+14, :]
+
+    fig = plt.figure(figsize=(6, 3))
+    ax = fig.add_subplot(1, 1, 1)
+
+    ax.bar(x=df["date"], height=df["rain"], width=0.96, color="skyblue", align="edge")
+    ax.set_xlim(start_date, end_date)
+    ax.set_ylim(0, df_lim.max()[1]+2)
+    ax.set_ylabel("precipitation /mm")
+    ax.set_title(title_label)
+    ax.set_facecolor("white")
+    ax.grid(axis="y", which="both", linewidth=0.5, linestyle="dashed", alpha=0.5)
+    plt.xticks(rotation=45)
 
     png_out = BytesIO()
 
