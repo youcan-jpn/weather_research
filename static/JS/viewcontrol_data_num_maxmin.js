@@ -1,8 +1,8 @@
-function changeViewByDataNum() {
-    var data_num = document.getElementById('data_num').value;
-    var matches1 = document.getElementsByClassName('data1');
-    var matches2 = document.getElementsByClassName('data2');
-    var matches3 = document.getElementsByClassName('data3');
+function changeViewByDataNumMaxmin() {
+    var data_num = document.getElementById('data_num_maxmin').value;
+    var matches1 = document.getElementsByClassName('data1_maxmin');
+    var matches2 = document.getElementsByClassName('data2_maxmin');
+    var matches3 = document.getElementsByClassName('data3_maxmin');
 
     if (data_num ==3) {
         for (var j=0; j<matches2.length; j++) {
@@ -28,7 +28,7 @@ function changeViewByDataNum() {
     }
 };
 
-document.getElementById("data_num").addEventListener("input", function(){
-    changeViewByDataNum();
+document.getElementById("data_num_maxmin").addEventListener("input", function(){
+    changeViewByDataNumMaxmin();
 }, false);
-changeViewByDataNum();
+changeViewByDataNumMaxmin();

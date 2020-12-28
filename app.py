@@ -17,16 +17,16 @@ def index():
 def plot_maxmin():
 
     # obtain query parameters
-    area1 = request.args.get('area1', type=str)
-    area2 = request.args.get('area2', type=str)
-    area3 = request.args.get('area3', type=str)
+    area1 = request.args.get('area1_maxmin', type=str)
+    area2 = request.args.get('area2_maxmin', type=str)
+    area3 = request.args.get('area3_maxmin', type=str)
     maxmin_color1 = request.args.get('maxmin_color1', type=str)
     maxmin_color2 = request.args.get('maxmin_color2', type=str)
     maxmin_color3 = request.args.get('maxmin_color3', type=str)
     maxmin_year1 = request.args.get('maxmin_year1', type=str)
     maxmin_year2 = request.args.get('maxmin_year2', type=str)
     maxmin_year3 = request.args.get('maxmin_year3', type=str)
-    maxmin_num = request.args.get('data_num', type=int)
+    maxmin_num = request.args.get('data_num_maxmin', type=int)
     areas = [area1, area2, area3]
     maxmin_colors = [maxmin_color1, maxmin_color2, maxmin_color3]
     maxmin_years = [maxmin_year1, maxmin_year2, maxmin_year3]
@@ -67,9 +67,9 @@ def plot_maxmin():
 def plot_rain():
 
     # obtain query parameters
-    area1 = request.args.get('area1', type=str)
-    area2 = request.args.get('area2', type=str)
-    area3 = request.args.get('area3', type=str)
+    area1 = request.args.get('area1_rain', type=str)
+    area2 = request.args.get('area2_rain', type=str)
+    area3 = request.args.get('area3_rain', type=str)
     areas = [area1, area2, area3]
     start = datetime.strptime(request.args.get("start", default="2010-01-01", type=str), "%Y-%m-%d")
     end = datetime.strptime(request.args.get("end", default="2019-12-31", type=str), "%Y-%m-%d")
@@ -77,7 +77,7 @@ def plot_rain():
     rain_color2 = request.args.get('rain_color2', type=str)
     rain_color3 = request.args.get('rain_color3', type=str)
     rain_colors = [rain_color1, rain_color2, rain_color3]
-    rain_num = request.args.get('data_num', type=int)
+    rain_num = request.args.get('data_num_rain', type=int)
 
     df1 = pd.DataFrame()
     df2 = pd.DataFrame()
