@@ -125,7 +125,7 @@ def plot_bar():
     df = pd.read_csv('weather_research/static/data/{}/rain.csv'.format(bar_area), skiprows=5)
     df["date"] = pd.to_datetime(df["date"])
     start_date = df.iloc[days_index]["date"]
-    end_date = df.iloc[days_index]["date"] + timedelta(days=+14)
+    end_date = start_date + timedelta(days=+14)
     title_label = "".format(bar_area) + start_date.strftime("%Y/%m/%d") + " - " + end_date.strftime("%Y/%m/%d")
 
     df_lim = df.iloc[days_index:days_index+14, :]
