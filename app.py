@@ -118,7 +118,6 @@ def plot_bar():
     # obtain query parameters
     bar_area = request.args.get('area_bar', type=str)
     bar_start = datetime.strptime(request.args.get("start_bar", default="2010-01-01", type=str), "%Y-%m-%d")
-    bar_color = request.args.get('bar_color', type=str)
 
     days_index = (bar_start - datetime.strptime("2010-01-01", "%Y-%m-%d")).days
 
